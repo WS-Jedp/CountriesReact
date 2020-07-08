@@ -1,0 +1,64 @@
+.formCountries{
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.formCountries input[type="text"] {
+  position: relative;
+  min-width: 300px;
+  width: 60%;
+  max-width: 700px;
+  padding: 15px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+  background-color: var(--color-white);
+  color: var(--color-third);
+  outline: none;
+  transition: 0.3s ease-in-out;
+}
+
+.formCountries input[type="text"]::placeholder{
+  color: var(--color-third);
+}
+.formCountries input[type="text"]:hover{
+  box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+}
+
+.formCountries select{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 200px;
+  width: 20%;
+  max-width: 360px;
+  padding: 15px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+  background-color: var(--color-white);
+  color: var(--color-third);
+  outline: none;
+  transition: 0.3s ease-in-out;
+}
+
+.select__options option{
+  background-color: var(--color-white);
+  border: none;
+}
+
+@media only screen and (max-width: 400px){
+  .formCountries{
+    align-items: flex-start;
+    flex-flow: column;
+  }
+
+  .formCountries input[tpye="text"]{
+    margin: var(--space-normal) 0;
+  }
+}
