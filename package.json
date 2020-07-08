@@ -1,0 +1,24 @@
+{
+  "name": "api-countries-react",
+  "version": "1.0.0",
+  "description": "Just a project for practice my frontend skill with react and webpack",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/WS-Jedp/CountriesReact.git"
+  },
+  "keywords": [
+    "react",
+    "api",
+    "webpack"
+  ],
+  "author": "@WS-Jedp <GitHub>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WS-Jedp/CountriesReact/issues"
+  },
+  "homepage": "https://github.com/WS-Jedp/CountriesReact#readme"
+}
