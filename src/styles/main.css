@@ -1,0 +1,36 @@
+:root{
+  font-size: 62.5%;
+  
+  /* COLORS */
+  --color-main: hsl(0, 0%, 98%);
+  --color-secondary: hsl(200, 15%, 8%);
+  --color-third: hsl(0, 0%, 52%);
+
+  --color-white: hsl(0, 0%, 100%);
+  --color-secondary-black: hsl(209, 23%, 22%);
+  --color-secondary-bg: hsl(207, 26%, 17%);
+
+  /* SPACES */
+  --space-big: 36px;
+  --space-medium: 30px;
+  --space-normal: 18px;
+  --space-small: 12px;
+}
+
+h1,h2,h3,h4 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-black);
+}
+
+* {
+  box-sizing: border-box; 
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+
+body{
+  font-family: 'Nunito Sans', sans-serif;
+}
