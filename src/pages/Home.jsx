@@ -17,6 +17,8 @@ class Home extends React.Component {
     this.state = {
       countries: [],
       filteredCountries: [],
+      country: /[a-zA-Z]{1,}/,
+      continent: ''
     };
     this.handleFilterName = this.handleFilterName.bind(this);
     this.handleFilterContinent = this.handleFilterContinent.bind(this);
@@ -32,25 +34,29 @@ class Home extends React.Component {
     }
   }
 
+  filterCountries(country = /[a-zA-Z]{1,}/,continent = /[a-zA-Z]{1,}/){
+
+    console.log(country);
+    this.setState({
+      filteredCountries: this.state.countries.filter(currCountry => currCountry.name.toLowerCase().match(country) && currCountry.region.match(continent))
+    })
+  }
+
   handleFilterName(ev){
     let value = ev.target.value;
     this.setState({
-      filteredCountries: this.state.countries.filter(country => country.name.toLowerCase().includes(value.toLowerCase() && country.region.toLowerCase() === value.toLowerCase()))
+      country: value,
     })
+    this.filterCountries(value,this.state.continent);
   }
   
   handleFilterContinent(ev){
     let value = ev.target.value;
-    if(value === ''){
-      this.setState({
-        filteredCountries: this.state.countries
-      })
-    }
-    
-    console.log(this.state.filteredCountries);
     this.setState({
-      filteredCountries: this.state.countries.filter(country => country.region.toLowerCase() === value.toLowerCase())
+      continent: value,
     });
+
+    this.filterCountries(this.state.country,value);
   }
 
   showCountries(data){
