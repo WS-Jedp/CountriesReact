@@ -1,0 +1,24 @@
+header{
+  position: sticky;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: row nowrap;
+  top: 0;
+  height: 80px;
+  margin: 0;
+  padding: 0 var(--space-big);
+  background-color: var(--color-white);
+  box-shadow: 0 1px 6px rgba(0,0,0,0.3);
+  z-index: 999;
+}
+
+
+@media only screen and (max-width: 400px){
+
+  header {
+    padding: var(--space-normal) 0;
+    flex-flow: column;
+  }
+}
