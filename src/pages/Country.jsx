@@ -1,5 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as getCountryAction  from '../actions/countryAction';
 
 // Styles
 import './styles/Country.css';
@@ -14,35 +16,28 @@ class Country extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = {
-      countryData: []
-    }
   }
 
   async componentDidMount(){
     const name = this.props.match.params.name;
     const resp = await getCountry(name);
     const data = await resp.json();
-    await this.setState({
-      countryData: data
-    })
-    this.state.countryData.population = new Intl.NumberFormat('de-DE').format(Number(this.state.countryData.population))
+    this.props.getCountryAction(data);
+    this.props.countryData.population = new Intl.NumberFormat('de-DE').format(Number(this.props.countryData.population))
   }
 
 
   render() {
-
-
-    if(this.state.countryData.length === 0){
+    if(this.props.countryData.length === 0){
       return (<Loading />)
     }
 
-    const countryData = this.state.countryData[0];
+    const countryData = this.props.countryData[0];
 
     return (
       <section className="country">
         <Link to="/" className="country__back">
-          <i class="fas fa-arrow-left"></i> Back
+          <i className="fas fa-arrow-left"></i> Back
         </Link>
 
         <article className="country__content">
@@ -101,7 +96,7 @@ class Country extends React.Component {
             </div>
             <p className="country__borders">
               <strong>Border countries:</strong>
-                {countryData.borders.lenght > 0 ? (countryData.borders.map(data => <a>{data}</a>)) : (<p>There is no border countries</p>)}
+                {countryData.borders.lenght > 0 ? (countryData.borders.map(data => <a>{data}</a>)) : (<span>There is no border countries</span>)}
             </p>  
           </div>
         </article>
@@ -111,4 +106,6 @@ class Country extends React.Component {
 }
 
 
-export default Country;
+const mapStateToProps = (reducers) => reducers.countryReducer;
+
+export default connect(mapStateToProps, getCountryAction)(Country);
