@@ -7,6 +7,9 @@ import './styles/Country.css';
 // Services
 import {getCountry} from '../services/CountriesApi';
 
+// Components
+import Loading from '../components/Loading';
+
 class Country extends React.Component {
 
   constructor(props){
@@ -31,7 +34,7 @@ class Country extends React.Component {
 
 
     if(this.state.countryData.length === 0){
-      return (<div>Loading...</div>)
+      return (<Loading />)
     }
 
     const countryData = this.state.countryData[0];
@@ -39,7 +42,7 @@ class Country extends React.Component {
     return (
       <section className="country">
         <Link to="/" className="country__back">
-          Back
+          <i class="fas fa-arrow-left"></i> Back
         </Link>
 
         <article className="country__content">
@@ -98,7 +101,7 @@ class Country extends React.Component {
             </div>
             <p className="country__borders">
               <strong>Border countries:</strong>
-                {countryData.borders.map(data => <a>{data}</a>)}
+                {countryData.borders.lenght > 0 ? (countryData.borders.map(data => <a>{data}</a>)) : (<p>There is no border countries</p>)}
             </p>  
           </div>
         </article>
