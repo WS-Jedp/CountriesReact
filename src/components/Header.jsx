@@ -32,7 +32,7 @@ const Header = () => {
       </h1>
       <div className="button-theme" onClick={handleTheme}>
         {
-          theme === 'default' ? (<><i class="far fa-moon"></i> <span>Dark Mode</span></>) : (<><i class="fas fa-moon"></i> <span>Dark Mode</span></>)
+          theme === 'default' ? (<><i className="far fa-moon"></i> <span>Dark Mode</span></>) : (<><i className="fas fa-moon"></i> <span>Dark Mode</span></>)
         }
       </div>
     </header>
