@@ -52,13 +52,14 @@
   border: none;
 }
 
-@media only screen and (max-width: 400px){
+@media screen and (max-width: 400px){
   .formCountries{
     align-items: flex-start;
     flex-flow: column;
+    padding: var(--space-small)
   }
 
-  .formCountries input[tpye="text"]{
-    margin: var(--space-normal) 0;
+  .formCountries * {
+    margin-bottom: var(--space-small);
   }
 }
