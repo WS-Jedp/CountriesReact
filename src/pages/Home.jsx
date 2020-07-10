@@ -1,4 +1,5 @@
 import React from'react';
+import {connect} from 'react-redux';
 
 // Styles
 import './styles/Home.css';
@@ -11,51 +12,39 @@ import Card from '../components/Card';
 import Filter from '../components/Filter';
 import Loading from '../components/Loading';
 
+import {getCountriesAction, setFilteredCountriesAction, setCountryAction, setContinentAction} from '../actions/countriesActions';
+
+
 class Home extends React.Component {
 
   constructor(){
     super();
-    this.state = {
-      countries: [],
-      filteredCountries: [],
-      country: /[a-zA-Z]{1,}/,
-      continent: ''
-    };
     this.handleFilterName = this.handleFilterName.bind(this);
     this.handleFilterContinent = this.handleFilterContinent.bind(this);
   }
 
   async componentDidMount(){
-    if(this.state.countries.length === 0){
+    if(this.props.countries.length === 0){
       const data = await getCountries();
-      this.setState({
-        countries: data,
-        filteredCountries: data
-      })
+      this.props.getCountriesAction(data);
+      this.props.setFilteredCountriesAction(data);
     }
   }
 
   filterCountries(country = /[a-zA-Z]{1,}/,continent = /[a-zA-Z]{1,}/){
-    this.setState({
-      filteredCountries: this.state.countries.filter(currCountry => currCountry.name.toLowerCase().match(country) && currCountry.region.match(continent))
-    })
+    this.props.setFilteredCountriesAction(this.props.countries.filter(currCountry => currCountry.name.toLowerCase().match(country) && currCountry.region.match(continent)))
   }
 
   handleFilterName(ev){
     let value = ev.target.value;
-    this.setState({
-      country: value,
-    })
-    this.filterCountries(value,this.state.continent);
+    this.props.setCountryAction(value);
+    this.filterCountries(value,this.props.continent);
   }
   
   handleFilterContinent(ev){
     let value = ev.target.value;
-    this.setState({
-      continent: value,
-    });
-
-    this.filterCountries(this.state.country,value);
+    this.props.setContinentAction(value);
+    this.filterCountries(this.props.country,value);
   }
 
   showCountries(data){
@@ -81,11 +70,21 @@ class Home extends React.Component {
           <Filter onChange={this.handleFilterName} onChangeContinent={this.handleFilterContinent} />
         </nav>
         <div className="home__cards"> 
-          {this.state.countries.length != 0 ? this.showCountries(this.state.filteredCountries) : <Loading />}
+          {this.props.countries.length != 0 ? this.showCountries(this.props.filteredCountries) : <Loading />}
         </div>
       </section>
     );
   }
 }
 
-export default Home;
+const mapStateToProps = (reducers) => {
+  return reducers.countriesReducer
+}
+
+const mapDispatchToProps = {
+  getCountriesAction,
+  setCountryAction,
+  setFilteredCountriesAction,
+  setContinentAction
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
