@@ -9,6 +9,7 @@ import { getCountries } from '../services/CountriesApi';
 // Compenents
 import Card from '../components/Card';
 import Filter from '../components/Filter';
+import Loading from '../components/Loading';
 
 class Home extends React.Component {
 
@@ -35,8 +36,6 @@ class Home extends React.Component {
   }
 
   filterCountries(country = /[a-zA-Z]{1,}/,continent = /[a-zA-Z]{1,}/){
-
-    console.log(country);
     this.setState({
       filteredCountries: this.state.countries.filter(currCountry => currCountry.name.toLowerCase().match(country) && currCountry.region.match(continent))
     })
@@ -82,7 +81,7 @@ class Home extends React.Component {
           <Filter onChange={this.handleFilterName} onChangeContinent={this.handleFilterContinent} />
         </nav>
         <div className="home__cards"> 
-          {this.state.countries.length != 0 ? this.showCountries(this.state.filteredCountries) : 'loading'}
+          {this.state.countries.length != 0 ? this.showCountries(this.state.filteredCountries) : <Loading />}
         </div>
       </section>
     );

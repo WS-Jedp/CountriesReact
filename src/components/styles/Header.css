@@ -14,6 +14,13 @@ header{
   z-index: 999;
 }
 
+.button-theme{
+  color: var(--color-secondary);
+  font-size: 18px;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
 
 @media only screen and (max-width: 400px){
 

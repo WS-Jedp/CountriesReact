@@ -9,7 +9,7 @@ const Card = ({flag, name, population, region, capital}) => {
     <article className="card">
       <Link to={`/country/${name}`}>
         <figure className="card__image">
-          <img src={flag} alt={name}></img>
+          <img src={flag} alt={name} loading="lazy"></img>
         </figure>
         <div className="card__content">
           <h2 className="card__title">{name}</h2>
